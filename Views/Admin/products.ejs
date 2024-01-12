@@ -8,11 +8,14 @@
         <p class="price">$<%= item.price %></p>
         <p class="description"> <%= item.description %></p>
         <div class="btns-container">
-          <form action="/Admin/editProduct/<%=item.id%>" method="get">
+          <form action="/Admin/editProduct/<%=item._id%>" method="get">
             <button type="submit" class="btn">edit</button>
-        </form>     
-        <form action="/Admin/deleteProduct/<%=item.id%>" method="post">
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+          </form>     
+        <form action="/Admin/deleteProduct/<%=item._id%>" method="post">
             <button type="submit" class="btn">delete</button>
+            <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+
         </form>  
         </div>
         

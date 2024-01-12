@@ -1,6 +1,6 @@
 <%- include("../partials/header.ejs") %>
 
-<form class="add-product" action="<% if(edit){%> <%="/Admin/editProduct"  %> <%}else {%> <%="/Admin/addProduct"%><% } %>"  method="post">
+<form class="shop-form" action="<% if(edit){%> <%="/Admin/editProduct"  %> <%}else {%> <%="/Admin/addProduct"%><% } %>"  method="post">
   <div class="form-item">
   <label>Title</label>
   <input type="text" name="title" value="<% if(edit){%><%=product.title %><%}%>"/>
@@ -17,9 +17,11 @@
   <label>Description</label>
   <textarea name="description"  cols="30" rows="10"><% if(edit){%><%= product.description %><%}%></textarea>
   </div>
-  <input name="id" type="hidden" value="<% if(edit){%><%=product.id %><%}%>"/>
+  <input name="id" type="hidden" value="<% if(edit){%><%=product._id %><%}%>"/>
   
   <button class="btn"><% if(edit){%> <%= "Edit Product" %> <%}else {%> <%= "Add Product" %> <% } %> </button>
+  <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+
 </form>
 
 <%- include("../partials/end.ejs") %>

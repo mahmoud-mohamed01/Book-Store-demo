@@ -10,7 +10,8 @@
         <div class="btns-container">
             <form action="/cart" method="post">
                 <button class="btn">Add To Cart</button>  
-                <input type="hidden" name="productId" value="<%= product.id %>">
+                <input type="hidden" name="productId" value="<%= product._id %>">
+                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             </form>
         </div>   
     </div>

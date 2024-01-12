@@ -7,6 +7,8 @@
 nav {
   background-color: darkcyan;
   padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 nav ul {
@@ -28,7 +30,7 @@ nav a:hover {
 }
 
 
-.add-product
+.shop-form
 {
     margin: 10% auto;
     display: flex;

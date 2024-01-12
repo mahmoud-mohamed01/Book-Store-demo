@@ -1,0 +1,30 @@
+<%- include("../partials/header.ejs")%>
+
+<% if(error){ %>
+    <h1><%= error %></h1>
+    <% } %>
+
+
+<form class="shop-form" action="/login" method="post">
+    <div class="form-item">
+    <label for="email">email</label>
+    <input name="email" type="text">
+    </div>
+     <div class="form-item">
+    <label for="password">password</label>
+    <input name="password" type="password">
+    </div>
+    <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+    <button class="btn" type="submit">login</button>
+    
+    <div>
+    <a class="btn" href="/resetPassword">reset password</a>
+    </div>
+
+</form>
+
+
+
+
+
+<%- include("../partials/end.ejs") %>

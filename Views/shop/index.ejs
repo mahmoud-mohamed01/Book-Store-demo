@@ -8,10 +8,11 @@
         <p class="price">$<%= item.price %></p>
         <p class="description"> <%= item.description %></p>
       <div class="btns-container">
-        <a href="/products/<%= item.id %>" class="btn">view <% item.id %></a>  
+        <a href="/products/<%= item._id %>" class="btn">view <% item._id %></a>  
             <form action="/cart" method="post">
                 <button class="btn">Add To Cart</button>  
-                <input type="hidden" name="productId" value="<%= item.id %>">
+                <input type="hidden" name="productId" value="<%= item._id %>">
+                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
             </form>     
        </div>   
         

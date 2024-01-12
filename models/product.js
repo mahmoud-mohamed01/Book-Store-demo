@@ -1,37 +1,122 @@
-import Sequelize  from "sequelize";
-import sequelize from "../util/dbConfig.js";
+import { getDb } from "../util/dbConfig.js";
+import mongoose from "mongoose";
 
 
-const Product=sequelize.define("product",
+const Schema= mongoose.Schema;
+
+const productSchema = new Schema({
+  title: {
+    type: String,
+    requierd: true,
+  },
+
+  imageUrl: {
+    type: String,
+    requierd: true,
+  },
+  description: {
+    type: String,
+    requierd: true,
+  },
+  price: {
+    type: Number,
+    requierd: true,
+  },
+  userID:{
+    type:Schema.Types.ObjectId,
+    ref:"User",
+    requierd:true,
+  }
+});
+
+
+
+
+export default mongoose.model("Product",productSchema);
+
+
+
+
+
+
+
+
+
+/*
+
+
+class Product 
 {
-  id:{
-    type:Sequelize.INTEGER,
-    autoIncrement:true,
-    primaryKey:true,
-    allowNull:false
-  },
-
-  title:{type:Sequelize.STRING},
-
-  price:{
-    type:Sequelize.REAL,
-    allowNull:false
-  },
-
-  description:
+  constructor(title,price,description,imageUrl,id,userId)
   {
-    type:Sequelize.STRING,
-     allowNull:false
-  },
+    this.title=title;
+    this.price=price;
+    this.imageUrl=imageUrl;
+    this.description=description;
+    this._id=id;
+    this.userId=userId;
 
-  imageUrl:
+  }
+
+  async save()
   {
-    type:Sequelize.STRING,
-    allowNull:false
+    const db = await getDb();
+    if(this._id)
+    {
+
+          let result= db.collection("products").updateOne({_id:new mongodb.ObjectId(this._id)},{$set:{title:this.title,price:this.price,description:this.description,imageUrl:this.imageUrl}});
+    }
+    else
+    {
+      let res = await db.collection("products").insertOne(this);
+      console.log(res);
+
+    }
+   
+    
   }
 
 
-});
+  static async fetchAll()
+  {
+    const db=await getDb();
+    let result=await db.collection("products").find().toArray();
+
+
+    return result;
+
+  }
+
+
+  static async findById(id)
+  {
+       const db = await getDb();
+       let result = await db.collection("products").findOne({_id: new mongodb.ObjectId(id)});
+
+
+       return result;
+
+  }
+
+  static async deleteById(id)
+  {
+    const db =await getDb();
+    let result= db.collection("products").deleteOne({_id: new mongodb.ObjectId(id)})
+  }
+  
+
+  static async UpdateProduct(id,imageUrl,description,title,price)
+  {
+    const db =await getDb();
+  }
+}
+
+*/
+
+
+
+
+
 
 
 
@@ -118,4 +203,3 @@ class Product {
   }
 }
 */
-export default Product;

@@ -8,14 +8,34 @@
   </head>
   <body>
     <nav>
+
+      <% console.log(userType); %>
       <ul>
         <a href="/"> shop</a>
         <a href="/products">products</a>
+  
         <a href="/cart">cart</a>
         <a href="/orders">orders</a>
+          <% if(userType == "admin") {%>
         <a href="/Admin/addProduct">Add product</a>
         <a href="/Admin/products">Admin products</a>
+        <% } %>
         
       </ul>
+
+      <ul>
+        <% if(!isloggedIn){ %>
+        <a href="/login">Login</a>
+        <a href="/signup">signup</a>
+        <% } %>
+        
+        <% if(isloggedIn){ %>
+        <form action="/logout" method="post">
+          <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+          <button class="btn" type="submit">Logout</button>
+        </form>
+        <% } %>
+      </ul>
+
     </nav>
 

@@ -1,19 +1,40 @@
-import pg from"pg";
-import { Sequelize } from "sequelize";
-
-const sequelize = new Sequelize("bookStore", "postgres", "MAHMOUD6", {
-  host: "localhost",
-  dialect: "postgres",
-});
-/*
-const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "bookStore",
-  password: "MAHMOUD6",
-  port: 5432,
-});
-*/
+import mongodb from "mongodb"
 
 
-export default sequelize;
+let db;
+let client;
+
+
+async function mongoConnect(){
+  const mongoClient=mongodb.MongoClient;
+  try
+   {
+      client= await mongoClient.connect("mongodb+srv://admin-mahmoud:mahmoud123@cluster0.rkskfqb.mongodb.net/bookStore");
+      db = client.db("bookStore");
+      console.log(db);
+   } 
+
+    catch(err)
+    {
+      console.log(err);
+    }
+
+
+
+}
+
+function getDb()
+{
+  if(db)
+  {
+    return db;
+  }
+  else
+  {
+    throw "no DataBase found";
+  }
+}
+
+
+export{getDb};
+export default mongoConnect;
