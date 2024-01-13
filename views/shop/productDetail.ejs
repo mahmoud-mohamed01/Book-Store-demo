@@ -1,0 +1,25 @@
+<%- include("../partials/header.ejs") %>
+
+<h1 style="text-align: center;">product deatails </h1>
+<div class="books-container">
+     <div class="book">
+        <h2><%= product.title %></h2>
+        <img src="<%= product.imageUrl  %>" alt="">
+        <p class="price">$<%= product.price %></p>
+        <p class="description"> <%= product.description %></p>
+        <div class="btns-container">
+            <form action="/cart" method="post">
+                <button class="btn">Add To Cart</button>  
+                <input type="hidden" name="productId" value="<%= product._id %>">
+                <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+            </form>
+        </div>   
+    </div>
+
+
+    
+
+</div>
+
+
+<%- include("../partials/end.ejs") %>
