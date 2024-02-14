@@ -7,4 +7,4 @@ crypto when they need and add products to the cart and view there orders.
 
 there is only one admin user with email: mahmoudtestacc0@gmail.com and password:12345
 The project created using ejs, nodejs, express, mongoose, bcrypt and express-session.  
-view demo here :https://mahmoudbookstore.onrender.com
+
